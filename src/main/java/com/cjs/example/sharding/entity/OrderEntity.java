@@ -15,11 +15,10 @@ import java.io.Serializable;
 public class OrderEntity implements Serializable {
 
     @Id
-    @Column(name = "order_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderId;
+    private String orderId;
 
-    private Integer userId;
+    private String userId;
 
     private Integer status = 1;
 }

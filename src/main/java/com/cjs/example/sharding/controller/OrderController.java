@@ -20,10 +20,16 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping("/save")
-    public String save(@RequestParam("userId") Integer userId) {
+    public String save(@RequestParam("userId") String userId) {
         OrderEntity entity = new OrderEntity();
         entity.setUserId(userId);
         orderService.save(entity);
         return "ok";
+    }
+
+    @GetMapping("/getAll")
+    public String getAll(){
+        orderService.getAll();;
+        return "OK";
     }
 }
