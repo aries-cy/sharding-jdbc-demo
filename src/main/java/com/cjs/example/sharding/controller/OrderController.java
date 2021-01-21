@@ -20,7 +20,7 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping("/save")
-    public String save(@RequestParam("userId") String userId) {
+    public String save(@RequestParam("userId") Integer userId) {
         OrderEntity entity = new OrderEntity();
         entity.setUserId(userId);
         orderService.save(entity);
@@ -30,6 +30,12 @@ public class OrderController {
     @GetMapping("/getAll")
     public String getAll(){
         orderService.getAll();;
+        return "OK";
+    }
+
+    @GetMapping("saveOrderAndScore")
+    public String saveOrderAndScore(@RequestParam("userId")Integer userId){
+        orderService.saveOrderAndScore(userId);
         return "OK";
     }
 }

@@ -6,19 +6,20 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * @author ChengJianSheng
- * @date 2020-06-18
+ * TODO 描述
+ *
+ * @author cy
  */
 @Data
 @Entity
-@Table(name = "t_order")
-public class OrderEntity implements Serializable {
+@Table(name = "t_score")
+public class ScoreEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String orderId;
+    private String id;
 
     private Integer userId;
 
-    private Integer status = 1;
+    private Integer score;
 }
