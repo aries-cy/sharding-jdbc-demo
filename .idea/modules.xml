@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/order-service/order-service.iml" filepath="$PROJECT_DIR$/order-service/order-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/score-service/score-service.iml" filepath="$PROJECT_DIR$/score-service/score-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/sharding-jdbc-demo.iml" filepath="$PROJECT_DIR$/sharding-jdbc-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/sharding-server/sharding-server.iml" filepath="$PROJECT_DIR$/sharding-server/sharding-server.iml" />
     </modules>

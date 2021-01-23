@@ -7,12 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="sharding-server" />
+        <module name="score-service" />
         <module name="sharding-jdbc-demo" />
         <module name="order-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="order-service" target="1.8" />
+      <module name="score-service" target="1.8" />
       <module name="sharding-jdbc-demo" target="1.8" />
       <module name="sharding-server" target="1.8" />
     </bytecodeTargetLevel>
@@ -20,6 +22,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="order-service" options="-parameters" />
+      <module name="score-service" options="-parameters" />
       <module name="sharding-jdbc-demo" options="-parameters" />
       <module name="sharding-server" options="-parameters" />
     </option>

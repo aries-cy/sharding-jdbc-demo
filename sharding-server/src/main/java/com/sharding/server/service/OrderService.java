@@ -23,6 +23,12 @@ public class OrderService {
     @Resource
     private ScoreRepository scoreRepository;
 
+    @Resource
+    private OrderClient orderClient;
+
+    @Resource
+    private ScoreClient scoreClient;
+
 
     @Transactional(rollbackFor = Exception.class)
     @ShardingTransactionType(TransactionType.XA)
@@ -38,7 +44,24 @@ public class OrderService {
         //假设积分为  userId 取模 3
         scoreEntity.setScore(userId%3);
         scoreRepository.save(scoreEntity);
-
     }
 
+
+    public void rpcSaveOrderAndScore(Integer userId){
+        //添加订单记录
+        OrderEntity orderEntity = new OrderEntity();
+        orderEntity.setUserId(userId);
+        orderEntity.setOrderId(String.valueOf(System.currentTimeMillis()));
+        orderClient.saveOrder(orderEntity);
+
+        //添加积分记录
+        ScoreEntity scoreEntity = new ScoreEntity();
+        scoreEntity.setUserId(userId);
+        scoreEntity.setId(String.valueOf(System.currentTimeMillis()));
+        //假设积分为  userId 取模 3
+        scoreEntity.setScore(userId%3);
+
+        scoreClient.saveScore(scoreEntity);
+
+    }
 }

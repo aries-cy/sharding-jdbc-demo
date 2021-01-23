@@ -9,21 +9,28 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 /**
- * TODO 描述
  *
  * @author cy
  */
 @RestController
-@RequestMapping("/order")
-public class OrderController {
+@RequestMapping("/server")
+public class ServerController {
 
     @Resource
     private OrderService orderService;
 
-    @GetMapping("/test")
-    public String test(@RequestParam("userId") Integer userId){
+    @GetMapping("/local")
+    public String localTest(@RequestParam("userId") Integer userId){
         orderService.saveOrderAndScore(userId);
         return "OK";
     }
+
+
+    @GetMapping("rpc")
+    public String rpcTest(@RequestParam("userId") Integer userId){
+        orderService.rpcSaveOrderAndScore(userId);
+        return "OK";
+    }
+
 
 }

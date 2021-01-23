@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>eureka-server</artifactId>
+    <artifactId>score-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>sharding-server</name>
+    <name>score-service</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -19,16 +19,34 @@
         <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
     </properties>
 
-
     <dependencies>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <groupId>org.example</groupId>
+            <artifactId>aspectlog-spring-boot-starter</artifactId>
+            <version>1.0.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
+
+        <!--mysql-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -43,22 +61,11 @@
             <artifactId>druid</artifactId>
             <version>1.1.22</version>
         </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shardingsphere</groupId>
-            <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
-            <version>4.0.0-RC2</version>
-        </dependency>
-        <!--XA事务必须配置如下，否则如下报错-->
-        <!--Caused by: java.lang.NullPointerException: Cannot find transaction manager of [XA]-->
-        <dependency>
-            <groupId>org.apache.shardingsphere</groupId>
-            <artifactId>sharding-transaction-xa-core</artifactId>
-            <version>4.0.0-RC2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
