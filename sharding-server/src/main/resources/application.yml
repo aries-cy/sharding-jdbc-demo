@@ -1,0 +1,82 @@
+server:
+  port: 8760
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+spring:
+  application:
+    name: sharding-server
+
+  # 配置真实数据源
+  shardingsphere:
+    props:
+      sql:
+        show: true
+    datasource:
+      names: ds0,ds1
+
+      ds0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/ds0
+        username: root
+        password: root1234
+
+      ds1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/ds1
+        username: root
+        password: root1234
+
+    # 配置 t_order 表规则：分库按照user_id % 2；分表按照 order_id % 2
+    sharding:
+      tables:
+        t_order:
+          #声明数据库（ds0,ds1）和数据库表（t_order_0,t_order_1）
+          actual-data-nodes: ds$->{0..1}.t_order_$->{0..1}
+          #分库策略
+          database-strategy:
+            inline:
+              sharding-column: user_id
+              algorithm-expression: ds$->{user_id % 2}
+          #分表策略
+          table-strategy:
+            inline:
+              #分表的分片字段
+              sharding-column: order_id
+              #分表的分片规则
+              algorithm-expression: t_order_$->{order_id % 2}
+          #指定分片字段和规则
+          key-generator:
+            #雪花算法
+            type: SNOWFLAKE
+            column: order_id
+
+        t_score:
+          #声明数据库（ds0,ds1）和数据库表（t_score_0,t_score_1）
+          actual-data-nodes: ds$->{0..1}.t_score_$->{0..1}
+          #分库策略
+          database-strategy:
+            inline:
+              sharding-column: user_id
+              algorithm-expression: ds$->{(user_id+1) % 2}
+          #分表策略
+          table-strategy:
+            inline:
+              #分表的分片字段
+              sharding-column: user_id
+              #分表的分片规则
+              algorithm-expression: t_score_$->{user_id % 2}
+          #指定分片字段和规则
+          key-generator:
+            #雪花算法
+            type: SNOWFLAKE
+            column: id
+
+
