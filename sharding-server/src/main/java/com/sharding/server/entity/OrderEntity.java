@@ -1,13 +1,13 @@
-package com.cjs.example.sharding.entity;
+package com.sharding.server.entity;
 
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
+
 /**
- * @author ChengJianSheng
- * @date 2020-06-18
+ * @author cy
  */
 @Data
 @Entity

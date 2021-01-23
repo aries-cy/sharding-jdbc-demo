@@ -1,4 +1,4 @@
-package com.cjs.example.sharding.entity;
+package com.sharding.server.entity;
 
 import lombok.Data;
 
@@ -6,8 +6,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * TODO 描述
- *
  * @author cy
  */
 @Data

@@ -1,11 +1,12 @@
-package com.cjs.example.sharding.repository;
+package com.sharding.server.repository;
 
-import com.cjs.example.sharding.entity.OrderEntity;
+
+import com.sharding.server.entity.OrderEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+
 /**
- * @author ChengJianSheng
- * @date 2020-06-18
+ * @author cy
  */
 public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
 }
